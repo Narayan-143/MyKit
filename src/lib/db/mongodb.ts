@@ -1,8 +1,5 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/mykit";
-const MONGODB_DB_NAME = process.env.MONGODB_DB_NAME || "mykit";
-
 interface MongooseCache {
   conn: typeof mongoose | null;
   promise: Promise<typeof mongoose> | null;
@@ -24,12 +21,24 @@ export async function connectToDatabase(): Promise<typeof mongoose> {
   }
 
   if (!cached.promise) {
+    const uri = process.env.MONGODB_URI;
+    if (!uri) {
+      if (process.env.NODE_ENV === "production") {
+        throw new Error(
+          "MONGODB_URI environment variable is not defined in production."
+        );
+      }
+    }
+
+    const finalUri = uri || "mongodb://127.0.0.1:27017/mykit";
+    const dbName = process.env.MONGODB_DB_NAME || "mykit";
+
     const opts = {
       bufferCommands: false,
-      dbName: MONGODB_DB_NAME,
+      dbName,
     };
 
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((m) => {
+    cached.promise = mongoose.connect(finalUri, opts).then((m) => {
       return m;
     });
   }
