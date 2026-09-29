@@ -24,9 +24,10 @@ export default function Footer() {
               Crafted with authentic ingredients and passionate culinary expertise.
               Experience fresh, made-to-order dishes delivered straight to your table.
             </p>
-            <div className="text-[11px] text-slate-400 pt-2">
-              <span className="px-2 py-1 rounded bg-slate-900 border border-slate-800 text-amber-300">
-                Demo Restaurant Assessment
+            <div className="text-[11px] pt-1">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-emerald-400 font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                Kitchen Open • Fresh Delivery
               </span>
             </div>
           </div>
@@ -54,7 +55,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/admin" className="hover:text-white transition">
-                  Admin Dashboard
+                  Staff Portal
                 </Link>
               </li>
             </ul>
@@ -96,9 +97,19 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <div className="mt-12 pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>© {new Date().getFullYear()} MyKit. All rights reserved.</p>
-          <p className="text-slate-400">Portfolio & Assessment Project • Built with Next.js & MongoDB</p>
+          <div className="flex items-center gap-6">
+            <Link href="/menu" className="hover:text-slate-300 transition">
+              Menu
+            </Link>
+            <Link href="/cart" className="hover:text-slate-300 transition">
+              Cart
+            </Link>
+            <Link href="/admin" className="hover:text-slate-300 transition">
+              Staff Portal
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
