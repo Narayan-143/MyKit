@@ -38,13 +38,9 @@ async function runFullE2E() {
     for (const item of menuJson.data.items.slice(0, 5)) {
       if (item.image) {
         try {
-          const imgRes = await fetch(item.image, {
-            headers: {
-              "User-Agent":
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-            },
-          });
-          if (imgRes.status >= 200 && imgRes.status < 400) {
+          const optimizedUrl = `${BASE_URL}/_next/image?url=${encodeURIComponent(item.image)}&w=640&q=75`;
+          const imgRes = await fetch(optimizedUrl);
+          if (imgRes.status === 200) {
             // Image ok
           } else {
             console.warn(`    ⚠️ Image returned status ${imgRes.status}: ${item.image}`);
@@ -55,7 +51,7 @@ async function runFullE2E() {
         }
       }
     }
-    assert(brokenImages === 0, "First 5 menu images resolve with valid HTTP status (no broken images)");
+    assert(brokenImages === 0, "First 5 menu images resolve with HTTP 200 via Next.js image optimizer");
 
     // 3. Search and Category Filtering
     console.log("\n--- 3. Testing Menu Search & Category Filtering ---");
