@@ -83,11 +83,11 @@ export default function Footer() {
             <div className="space-y-2 text-xs">
               <div className="flex items-center gap-2.5">
                 <MapPin className="w-4 h-4 text-orange-400 shrink-0" />
-                <span>124 Food Street, Indiranagar, Bengaluru</span>
+                <span>124 Food Street, Gohiria Square, Bhubaneswar</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-orange-400 shrink-0" />
-                <span>+91 98765 43210</span>
+                <span>+91 8763583143</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-orange-400 shrink-0" />
