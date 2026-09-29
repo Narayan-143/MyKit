@@ -11,8 +11,8 @@ export default function AdminLoginPage() {
   const searchParams = useSearchParams();
   const from = searchParams.get("from") || "/admin";
 
-  const [email, setEmail] = useState("admin@mykit.com");
-  const [password, setPassword] = useState("AdminSecure@123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -48,17 +48,6 @@ export default function AdminLoginPage() {
           </p>
         </div>
 
-        {/* Demo Credentials Hint */}
-        <div className="p-3.5 rounded-2xl bg-amber-50 border border-amber-200/80 text-xs text-amber-900 space-y-1">
-          <p className="font-bold flex items-center gap-1.5">
-            <span>🔑 Demo Admin Credentials</span>
-          </p>
-          <div className="text-[11px] font-mono text-amber-800 space-y-0.5">
-            <p>Email: <span className="font-bold">admin@mykit.com</span></p>
-            <p>Password: <span className="font-bold">AdminSecure@123</span></p>
-          </div>
-        </div>
-
         {error && (
           <div className="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2">
             <AlertCircle className="w-4 h-4 shrink-0" />
@@ -81,7 +70,7 @@ export default function AdminLoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@mykit.com"
+                placeholder="Enter admin email"
                 className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
             </div>
